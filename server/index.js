@@ -20,7 +20,7 @@ const port = 3001;
 const publicPath = path.join(__dirname, '..', 'public');
 app.use(express.static(publicPath));
 
-app.post('/messages', (req, res) => {
+app.post('/api/messages', (req, res) => {
   res.header('Content-Type', 'application/json');
   client.messages
     .create({
