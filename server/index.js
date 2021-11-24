@@ -1,6 +1,5 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const path = require('path');
 const pino = require('express-pino-logger')();
 require('dotenv').config()
 const accountSID = process.env.TWILIO_ACCOUNT_SID
@@ -15,10 +14,6 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
-
-const port = 3001;
-const publicPath = path.join(__dirname, '..', 'public');
-app.use(express.static(publicPath));
 
 app.post('/api/messages', (req, res) => {
   res.header('Content-Type', 'application/json');
@@ -39,10 +34,6 @@ app.post('/api/messages', (req, res) => {
 
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
-});
-
-app.listen(port, () => {
-  console.log(`Server is up on port ${port}!`);
-});
+app.listen(3001, () =>
+  console.log('Express server is running on localhost:3001')
+);
