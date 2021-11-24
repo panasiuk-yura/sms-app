@@ -2,9 +2,13 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 const pino = require('express-pino-logger')();
+require('dotenv').config()
+const accountSID = process.env.TWILIO_ACCOUNT_SID
+const twilioTocken = process.env.TWILIO_AUTH_TOKEN
+
 const client = require('twilio')(
-  process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN
+  accountSID,
+  twilioTocken
 );
 
 const app = express();
